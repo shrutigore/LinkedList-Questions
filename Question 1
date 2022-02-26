@@ -1,0 +1,33 @@
+For a given singly linked list of integers, find and return its length.
+Do it using an iterative method.
+
+/*
+
+ 	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T> {
+		T data;
+		LinkedListNode<T> next;
+
+		public Node(T data) {
+			this.data = data;
+		}
+	}
+
+*/
+
+
+public class Solution {
+
+	public static int length(LinkedListNode<Integer> head){
+     int count=0;
+     LinkedListNode current = head;
+
+     while(current != null){
+     count++;
+     current=current.next;
+   }
+   return count;
+   }
+}
+
