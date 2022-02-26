@@ -1,0 +1,66 @@
+You have been given a singly linked list of integers along with an integer 'N'. 
+Write a function to append the last 'N' nodes towards the front of the singly linked list and returns the new head to the list.
+
+/*
+
+	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T> {
+    	T data;
+    	LinkedListNode<T> next;
+    
+    	public LinkedListNode(T data) {
+        	this.data = data;
+    	}
+	}
+
+*/
+
+
+public class Solution {    
+    
+    public static LinkedListNode<Integer> appendLastNToFirst(LinkedListNode<Integer> head, int n) {
+		//int n is the number at which we have to append from last.
+        LinkedListNode<Integer> node=head,checkNode=null,newHead=null;
+        // if n is 0, return head.
+        if (n==0)
+        {
+            return head;
+        }
+        
+        // traverse the linkedlist till last
+        int count=0;
+        while(node!=null)
+        {
+            node=node.next;
+            count=count+1;
+        }
+        // if length of ll is less than n
+        if (count<n)
+        {
+            return head;
+        }
+        //calculate count to travel from head of ll, as we cannot traverse from last
+        n=count-n;
+        node=head;
+        // traverse till nth node from last
+        for (int i=0;i<n-1;i++)
+        {
+            node=node.next;
+        }
+        //after traversing till the nth node, name the 
+        //next pointer different and start traversing till the last node.
+        //after reaching lal=st element, put last.next = head of linked list
+        checkNode=node.next;
+        node.next=null;
+        newHead=checkNode;
+        while(checkNode.next!=null)
+        {
+            checkNode=checkNode.next;
+        }
+        checkNode.next=head;
+        head=newHead;
+        return head;
+	}
+
+}
